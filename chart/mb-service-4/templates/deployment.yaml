@@ -1,25 +1,22 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "mb-service.fullname" . }}
+  name: {{ template "mb-service-4.fullname" . }}
   labels:
-    app: {{ template "mb-service.name" . }}
-    chart: {{ template "mb-service.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-    environment: {{ .Values.environment }}
+    appName: {{ template "mb-service-4.name" . }}
+    env: {{ .Values.environment }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "mb-service.name" . }}
-      release: {{ .Release.Name }}
+      appName: {{ template "mb-service-4.name" . }}
+      env: {{ .Values.environment }}
   template:
     metadata:
       labels:
-        app: {{ template "mb-service.name" . }}
-        release: {{ .Release.Name }}
-        environment: {{ .Values.environment }}
+        appName: {{ template "mb-service-4.name" . }}
+        env: {{ .Values.environment }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

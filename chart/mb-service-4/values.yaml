@@ -1,10 +1,11 @@
-# Default values for mb-service.
+# Default values for mb-service-3.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 2
 environment: pre-prod
 riskLevel: low-risk
+namespace: ns-master-builder-4
 
 image:
   imageName: 693885100167.dkr.ecr.us-east-2.amazonaws.com/master-builder/sample-service-4

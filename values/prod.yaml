@@ -1,0 +1,5 @@
+replicaCount: 4
+environment: prod
+image:
+    imageName: 693885100167.dkr.ecr.us-east-2.amazonaws.com/master-builder/sample-service-4
+    imageTag: v9

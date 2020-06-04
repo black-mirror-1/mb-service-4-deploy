@@ -3,25 +3,25 @@ kind: Deployment
 metadata:
   name: {{ template "mb-service.fullname" . }}
   labels:
-    appName: {{ template "mb-service.name" . }}
+    appName: {{ .Values.appName }}
     env: {{ .Values.environment }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      appName: {{ template "mb-service.name" . }}
+      appName: {{ .Values.appName }}
       env: {{ .Values.environment }}
   template:
     metadata:
       labels:
-        appName: {{ template "mb-service.name" . }}
+        appName: {{ .Values.appName }}
         env: {{ .Values.environment }}
     spec:
       nodeSelector:
         intent: {{ .Values.environment }}-{{ .Values.riskLevel }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Values.appName }}
           image: {{ .Values.image.imageName }}:{{ .Values.image.imageTag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

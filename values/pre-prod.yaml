@@ -1,4 +1,5 @@
-replicaCount: 5
+appName: mb-service-4
+replicaCount: 3
 environment: pre-prod
 image:
     imageName: 693885100167.dkr.ecr.us-east-2.amazonaws.com/master-builder/sample-service-4

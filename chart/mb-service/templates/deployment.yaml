@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "mb-service.fullname" . }}
+  labels:
+    appName: {{ template "mb-service.name" . }}
+    env: {{ .Values.environment }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      appName: {{ template "mb-service.name" . }}
+      env: {{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        appName: {{ template "mb-service.name" . }}
+        env: {{ .Values.environment }}
+    spec:
+      nodeSelector:
+        intent: {{ .Values.environment }}-{{ .Values.riskLevel }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.imageName }}:{{ .Values.image.imageTag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}

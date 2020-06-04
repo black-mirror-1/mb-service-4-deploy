@@ -18,6 +18,8 @@ spec:
         appName: {{ template "mb-service-4.name" . }}
         env: {{ .Values.environment }}
     spec:
+      nodeSelector:
+        intent: {{ .Values.environment }}-{{ .Values.riskLevel }}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.imageName }}:{{ .Values.image.imageTag }}
@@ -36,5 +38,3 @@ spec:
               port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-      nodeSelector:
-        intent: {{ .Values.environment }}-{{ .Values.intent }}

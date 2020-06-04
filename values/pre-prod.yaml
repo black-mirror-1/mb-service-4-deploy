@@ -3,7 +3,7 @@ replicaCount: 3
 environment: pre-prod
 image:
     imageName: 693885100167.dkr.ecr.us-east-2.amazonaws.com/master-builder/sample-service-4
-    imageTag: v9
+    imageTag: v10
     pullPolicy: Always
 namespace: ns-master-builder-4
 riskLevel: low-risk

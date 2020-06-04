@@ -5,3 +5,4 @@ image:
     imageTag: v5
     pullPolicy: Always
 namespace: ns-master-builder-4
+riskLevel: high-risk
